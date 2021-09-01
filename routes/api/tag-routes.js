@@ -8,9 +8,10 @@ router.get('/', (req, res) => {
     {
       include: {
         model: Product,
-        attributes: ["Product_tag"],
+        through: ProductTag,
       },
     }).then(data => res.json(data))
+    .catch((err) => res.status(404).json(err));
 });
 
 router.get('/:id', (req, res) => {
@@ -21,9 +22,10 @@ router.get('/:id', (req, res) => {
     },
     include: {
       model: Product,
-      attributes: ["product_tag"],
+      through: ProductTag,
     }
   }).then(data => res.json(data))
+    .catch((err) => res.status(404).json(err));
   // be sure to include its associated Product data
 });
 
